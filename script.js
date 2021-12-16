@@ -1,5 +1,5 @@
 
-const fullname = JSON.parse(localStorage.getItem("userInfo"))
+const fullname = JSON.parse(localStorage.getItem("userInfo")).fullname;
 window.onload = function () {
   let listStudent = [];
   let editId = null;
