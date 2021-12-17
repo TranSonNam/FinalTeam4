@@ -1,10 +1,9 @@
 
 const fullname = JSON.parse(localStorage.getItem("userInfo")).fullname;
+
 window.onload = function () {
   let listStudent = [];
   let editId = null;
-  let loai = "";
-  let color = "";
   const btn = document.querySelector("#submit");
   const table = document.querySelector("#tableData");
   const inputName = document.querySelector("#name");
@@ -21,6 +20,7 @@ window.onload = function () {
   modalBtn.addEventListener('click', openModal);
   closeBtn.addEventListener('click', closeModal);
   window.addEventListener('click', outsideClick);
+
   
   function clearInput() {
     inputName.value = "";
@@ -64,6 +64,7 @@ window.onload = function () {
       });
 
       btnEdit.innerHTML = "Sửa";
+      btnEdit.addEventListener('click', openModal);
       btnEdit.addEventListener("click", function () {
         editFunction(student.id);
       });
@@ -131,6 +132,7 @@ window.onload = function () {
     refreshTable();
     clearInput();
   });
+
   function openModal() {
     modal.style.display = 'block';
   }
