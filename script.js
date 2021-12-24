@@ -1,41 +1,118 @@
 
 const fullname = JSON.parse(localStorage.getItem("userInfo")).fullname;
 
-window.onload = function () {
-  let listStudent = [];
-  let editId = null;
-  const btn = document.querySelector("#submit");
-  const table = document.querySelector("#tableData");
-  const inputName = document.querySelector("#name");
-  const inputSdt = document.querySelector("#phone");
-  const inputEmail = document.querySelector("#email");
-  const inputAddress = document.querySelector("#address");
-  const inputDob = document.querySelector("#dob");
-  const inputScore = document.querySelector("#score");
-  const modal = document.querySelector('#my-modal');
-  const modalBtn = document.querySelector('#modal-btn');
-  const closeBtn = document.querySelector('.close');
+let staffList = [
+  {
+      id: 1,
+      name: "B",
+      gender: "male",
+      dob: "1990-10-10",
+      phone: "0915055032",
+      email: "B@gmail.com",
+      department: "usa",
+  },
+  {
+      id: 2,
+      name: "A",
+      gender: "male",
+      dob: "1991-11-11",
+      phone: "081236598",
+      email: "A@gmail.com",
+      department: "Sales",
+  },
+  {
+      id: 3,
+      name: "M",
+      gender: "female",
+      dob: "1992-12-12",
+      phone: "012356895",
+      email: "M@gmail.com",
+      department: "Accouting",
+  },
+];
+let editId = null;
+
+const table = document.querySelector("#table-data");
+const nameInput = document.querySelector("#name");
+const dobInput = document.querySelector("#dob");
+const phoneInput = document.querySelector("#phone");
+const emailInput = document.querySelector("#email");
+const departmentInput = document.querySelector("#department");
+const genderInput = document.querySelector("#gender");
+
+const modal = document.querySelector(".modal");
+const modalBtn = document.querySelector("#modalBtn");
+const closeBtn = document.querySelector(".close");
+
+const cancel = document.querySelector("#cancel");
+const add = document.querySelector("#add");
+
+const searchInput = document.querySelector("#search-bar");
+
+const sort = document.querySelector(".sorting");
+const sortName = document.querySelector(".sorting-name");
+const userFullname = document.querySelector("#userfullname");
+userFullname.innerHTML = "Hello:" + fullname;
 
 
-  modalBtn.addEventListener('click', openModal);
-  closeBtn.addEventListener('click', closeModal);
-  window.addEventListener('click', outsideClick);
 
-  
-  function clearInput() {
-    inputName.value = "";
-    inputAddress.value = "";
-    inputDob.value = "";
-    inputScore.value = "";
-    inputSdt.value = "";
-    inputEmail.value = "";
+modalBtn.addEventListener('click', openModal);
+closeBtn.addEventListener('click', closeModal);
+cancel.addEventListener('click', closeClick);
+add.addEventListener('click', closeModal);
+
+sort.addEventListener("click", function() {
+  staffList.reverse();
+  refreshTable();
+});
+
+sortName.addEventListener("click", function() {
+  let stage = 0;
+  if (stage = 0) {
+      staffList.sort();
+      refreshTable();
+      stage = 1;
+  } else if (stage = 1) {
+      staffList.sort(sortNameAsc);
+      refreshTable();
+      stage = 2;
+  } else {
+      staffList.sort(sortNameDes);
+      refreshTable();
+      stage = 0;
   }
+});
 
+function sortNameAsc(firstEl, secondEl) {
+  if (firstEl.name < secondEl.name) {
+      return -1;
+  }
+  if (firstEl.name > secondEl.name) {
+      return 1;
+  }
+  return 0;
+}
 
-  function refreshTable() {
-    table.innerHTML = "";
-    for (let i = 0; i < listStudent.length; i++) {
-      const student = listStudent[i];
+function sortNameDes(firstEl, secondEl) {
+  if (firstEl.name < secondEl.name) {
+      return 1;
+  }
+  if (firstEl.name > secondEl.name) {
+      return -1;
+  }
+  return 0;
+}
+
+function search() {
+  const searchValue = searchInput.value;
+  const option = document.querySelector("#search-option").value;
+  const searchArr = staffList.filter(function(item) {
+      return item[`${option}`].includes(searchValue);
+  });
+  console.log(searchArr);
+  table.innerHTML = "";
+  for (let i = 0; i < searchArr.length; i++) {
+      const staff = searchArr[i];
       const row = document.createElement("tr");
       const col1 = document.createElement("td");
       const col2 = document.createElement("td");
@@ -44,34 +121,33 @@ window.onload = function () {
       const col5 = document.createElement("td");
       const col6 = document.createElement("td");
       const col7 = document.createElement("td");
-      const col8 = document.createElement("td");
-
-      const btnDelete = document.createElement("button");
-      const btnEdit = document.createElement("button");
       
+      const col8 = document.createElement("td");
+      const btnEdit = document.createElement("text");
+      const btnDelete = document.createElement("text");
 
-      col1.innerHTML = student.id;
-      col2.innerHTML = student.name;
-      col3.innerHTML = student.sdt;
-      col4.innerHTML = student.email;
-      col5.innerHTML = student.address;
-      col6.innerHTML = student.dob;
-      col7.innerHTML = student.score;
+      col1.innerHTML = staff.id;
+      col2.innerHTML = staff.name;
+      col3.innerHTML = staff.dob;
+      col4.innerHTML = staff.phone;
+      col5.innerHTML = staff.email;
+      col6.innerHTML = staff.department;
+      col7.innerHTML = staff.gender;
 
-      btnDelete.innerHTML = "Xóa";
-      btnDelete.addEventListener("click", function () {
-        deleteFunction(student.id);
-      });
-
-      btnEdit.innerHTML = "Sửa";
+      btnEdit.innerHTML = "<img src='./icon/edit.png' width='15px' height='15px' style='margin-right: 15px;'>";
       btnEdit.addEventListener('click', openModal);
       btnEdit.addEventListener("click", function () {
-        editFunction(student.id);
+        editFunction(staff.id);
       });
+  
+      btnDelete.innerHTML = "<img src='./icon/bin.png' width='15px' height='15px'>";
+      btnDelete.addEventListener("click", function () {
+        deleteFunction(staff.id);
+      });
+  
 
-      row.style.background = student.background;
-      col8.appendChild(btnDelete);
       col8.appendChild(btnEdit);
+      col8.appendChild(btnDelete);
 
       row.appendChild(col1);
       row.appendChild(col2);
@@ -82,90 +158,159 @@ window.onload = function () {
       row.appendChild(col7);
       row.appendChild(col8);
       table.appendChild(row);
-    }
   }
+}
 
-  btn.addEventListener("click", function () {
-    if (
-      inputName.value === "" ||
-      inputAddress.value === "" ||
-      inputDob.value === "" ||
-      inputScore.value === "" ||
-      inputSdt.value === "" ||
-      inputEmail.value === "" 
-  
-    ) {
-      return alert("Please fill all the fields");
-    }
+function openModal() {
+  modal.style.display = 'block';
+}
 
-    if (editId !== null) {
-      const indexStudentNeedEdit = listStudent.findIndex(
-        (item) => item.id === editId
-      );
-      const newStudent = {
-        id: editId,
-        name: inputName.value,
-        address: inputAddress.value,
-        dob: inputDob.value,
-        score: inputScore.value,
-        sdt: inputSdt.value,
-        email: inputEmail.value,
-      };
-      listStudent[indexStudentNeedEdit] = newStudent;
-      editId = null;
-    } else {
-      const student = {
-        id: "",
-        name: inputName.value,
-        address: inputAddress.value,
-        dob: inputDob.value,
-        score: inputScore.value,
-        sdt: inputSdt.value,
-        email: inputEmail.value,
-      };
-      listStudent.push(student);
+function closeModal() {
+  modal.style.display = 'none';
+}
 
-      for (let n = 0; n < listStudent.length; n++) {
-        listStudent[n].id = n + 1;
-    }
-    }
-    refreshTable();
-    clearInput();
-  });
-
-  function openModal() {
-    modal.style.display = 'block';
-  }
-  
-  // Close
-  function closeModal() {
+function closeClick() {
     modal.style.display = 'none';
-  }
+}
+
+function clearInput() {
+  nameInput.value = "";
+  dobInput.value = "";
+  phoneInput.value = "";
+  emailInput.value = "";
+  departmentInput.value = "";
+  genderInput.value = "";
+};
+
+function refreshTable() {
   
-  // Close If Outside Click
-  function outsideClick(e) {
-    if (e.target == modal) {
-      modal.style.display = 'none';
-    }
-  }
+  table.innerHTML = "";
+  for (let i = 0; i < staffList.length; i++) {
+      const staff = staffList[i];
+      const row = document.createElement("tr");
+      const col1 = document.createElement("td");
+      const col2 = document.createElement("td");
+      const col3 = document.createElement("td");
+      const col4 = document.createElement("td");
+      const col5 = document.createElement("td");
+      const col6 = document.createElement("td");
+      const col7 = document.createElement("td");
+      const col8 = document.createElement("td");
+      const btnEdit = document.createElement("text");
+      const btnDelete = document.createElement("text");
 
-  function deleteFunction(id) {
-    const index = listStudent.findIndex((item) => item.id === id);
-    listStudent.splice(index, 1);
-    refreshTable();
-  }
+      col1.innerHTML = staff.id;
+      col2.innerHTML = staff.name;
+      col3.innerHTML = staff.gender;
+      col4.innerHTML = staff.dob;
+      col5.innerHTML = staff.phone;
+      col6.innerHTML = staff.email;
+      col7.innerHTML = staff.department;
 
-  function editFunction(id) {
-    const index = listStudent.findIndex((item) => item.id === id);
-    const student = listStudent[index];
-    inputName.value = student.name;
-    inputAddress.value = student.address;
-    inputDob.value = student.dob;
-    inputScore.value = student.score;
-    inputSdt.value = student.sdt;
-    inputEmail.value = student.email;
+      btnEdit.innerHTML = "<img src='./icon/edit.png' width='15px' height='15px' style='margin-right: 15px;'>";
+      btnEdit.addEventListener('click', openModal);
+      btnEdit.addEventListener("click", function () {
+        editFunction(staff.id);
+      });
+  
+      btnDelete.innerHTML = "<img src='./icon/bin.png' width='15px' height='15px'>";
+      btnDelete.addEventListener("click", function () {
+        deleteFunction(staff.id);
+      });
+  
 
-    editId = id;
+      col8.appendChild(btnEdit);
+      col8.appendChild(btnDelete);
+
+      row.appendChild(col1);
+      row.appendChild(col2);
+      row.appendChild(col3);
+      row.appendChild(col4);
+      row.appendChild(col5);
+      row.appendChild(col6);
+      row.appendChild(col7);
+      row.appendChild(col8);
+      table.appendChild(row);
   }
 };
 
+add.addEventListener("click", function () {
+  if (
+    nameInput.value == "" ||
+      dobInput.value == "" ||
+      phoneInput.value == "" ||
+      emailInput.value == "" ||
+      departmentInput.value == "" ||
+      genderInput.value == ""
+  ) {
+      return alert("Please fill up the blanks !!!")
+  };
+  if (editId !== null) {
+      const indexeditStaffFunction = staffList.findIndex((item) => item.id === editId);
+      const newStaff = {
+          id: editId,
+          name: nameInput.value,
+          dob: dobInput.value,
+          phone: phoneInput.value,
+          email: emailInput.value,
+          department: departmentInput.value,
+          gender: genderInput.value,
+      };
+      staffList[indexeditStaffFunction] = newStaff;
+      editId = null;
+  } else {
+      const newStaff = {
+          id: "",
+          name: nameInput.value,
+          dob: dobInput.value,
+          phone: phoneInput.value,
+          email: emailInput.value,
+          department: departmentInput.value,
+          gender: genderInput.value,
+      }
+      staffList.push(newStaff);
+      addId();
+  }
+  closeModal();
+  refreshTable();
+  clearInput();
+});
+
+refreshTable();
+console.log(staffList);
+
+function deleteFunction(id) {
+  const index = staffList.findIndex((item) => item.id === id);
+  staffList.splice(index, 1);
+  addId();
+  refreshTable();
+}
+
+function editFunction(id) {
+  const index = staffList.findIndex((item) => item.id === id);
+  const staff = staffList[index];
+  nameInput.value = staff.name;
+  dobInput.value = staff.dob;
+  phoneInput.value = staff.phone;
+  emailInput.value = staff.email;
+  departmentInput.value = staff.department;
+  genderInput.value = staff.gender;
+  editId = id;
+  refreshTable();
+}
+
+function addId() {
+  for (let n = 0; n < staffList.length; n++) {
+      staffList[n].id = n + 1;
+  }
+}
+
+function nv() {
+  window.location.href = './index.html';
+}
+function kh() {
+  window.location.href = './index1.html';
+}
+function logout() {
+  window.location.href = "./login.html";
+}
