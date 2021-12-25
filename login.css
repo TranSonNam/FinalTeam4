@@ -1,77 +1,76 @@
-.header{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    background-color: white;
-    border: 1px solid black;
-  }
-  
-  .logo{
-    text-transform: uppercase;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 200px;
-  }
-  .containerMenu{
-  height: 70px;
-  width: 80vw;
+
+
+body {
+  background-image: url(./icon/images.png);
+  background-repeat: no-repeat, repeat;
+  background-color: #cccccc;
+  height: 750px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  justify-content: space-evenly;
-  display: flex  ;
-  }
-  
-  .Topic-title{
-    margin: 20px;
-  }
-  
-  
-  body {
+}
+
+.body {
+  display: flex;
+  justify-content: center;
+  width: 600px;
+  height: 600px;
+  background: white;
+  border-radius: 12px;
+}
+.body form {
+    height: 100%;
+    width: 80%;
+    justify-content: center;
+    align-items: flex-start;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .body {
-      display: flex;
-      justify-content: center;
-    width: 500px;
-    height: 400px;
-    background: gray;
-    border-radius: 12px;
-  }
-  .body form {
-      height: 100%;
-      width: 400px;
-      justify-content: center;
-      align-items: flex-start;
-      display: flex;
-      flex-direction: column;
-  }
-  
-  .body label {
-      font-size: 20px;
-      font-weight: bold;
-      color: black;
-      margin-top: 20px;
-  }
-  
-  .body input {
-      padding: 10px;
-      width:calc(100% - 20px);
-     border-radius: 8px;
-  }
-  .body input:focus {
-     background: chocolate;
-  }
-  .body input[type='submit'],input[type='button'] {
-      background: chartreuse;
-      border: none;
-      border-radius: 10px;
-      margin-top: 10px;
-      width: 200px;
-      align-self: center;
-  }
+}
+.body h1{
+  display: flex;
+  align-self: center;
+}
+.logo{
+  height: 100px;
+  width: 200px;
+  align-self: center;
+  display: flex;
+}
+
+.user{
+  height: 23px;
+  width: 20px;
+  margin-bottom: 5px;
+}
+
+.body label {
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+
+}
+
+.body input {
+    padding: 10px;
+    width:calc(100% - 20px);
+    border-radius: 8px;
+}
+.body input:focus {
+   background: chocolate;
+}
+.body input[type='submit'],input[type='button'] {
+    background: chartreuse;
+    border: none;
+    border-radius: 10px;
+    margin-top: 10px;
+    width: 200px;
+    align-self: center;
+}
