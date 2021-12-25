@@ -128,11 +128,11 @@ function search() {
 
       col1.innerHTML = staff.id;
       col2.innerHTML = staff.name;
-      col3.innerHTML = staff.dob;
-      col4.innerHTML = staff.phone;
-      col5.innerHTML = staff.email;
-      col6.innerHTML = staff.department;
-      col7.innerHTML = staff.gender;
+      col3.innerHTML = staff.gender;
+      col4.innerHTML = staff.dob;
+      col5.innerHTML = staff.phone;
+      col6.innerHTML = staff.email;
+      col7.innerHTML = staff.department;
 
       btnEdit.innerHTML = "<img src='./icon/edit.png' width='15px' height='15px' style='margin-right: 15px;'>";
       btnEdit.addEventListener('click', openModal);
