@@ -136,7 +136,7 @@ margin-bottom: 12px;
 
 .modal-content {
   margin: 10% auto;
-  width: 60%;
+  width: 40%;
   box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
   animation-name: modalopen;
   animation-duration: var(--modal-duration);
@@ -175,6 +175,26 @@ margin-bottom: 12px;
   flex-direction: row;
   justify-content: flex-end;
 }
+.body-left a{
+  font-size: 20px;
+  text-align: left;
+  width: 100%;
+  height: 40px;
+}
+.containerMenu img:hover{
+  background-color: grey;
+  color: white;
+  height: 50px;
+  width: 50px;
+}
+.logout{
+  height: 40px;
+  width: 40px;
+}
+.body-left a:hover {
+  background-color: grey;
+  color: black;
+}
 
 .close {
   color: #ccc;
@@ -194,6 +214,7 @@ margin-bottom: 12px;
   margin-bottom: 20px;
   margin-top: 10px;
   width: 100%;
+  height: 30px;
 }
 
 .form label {
@@ -218,6 +239,7 @@ margin-bottom: 12px;
   cursor: pointer;
 }
 table {
+  font-size: 20px;
   width: 100%;
   margin-top: 20px;
   border: 1px solid black;
@@ -240,6 +262,7 @@ td {
   height: 1000px;
 }
 .secssion1{
+  font-size: 20px;
 padding-top: 10px;
 padding-bottom: 10px;
 background: blue;
