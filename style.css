@@ -5,6 +5,7 @@
   align-items: center;
   background-color: blue;
   color:  white;
+  padding: 5px;
 }
 
 .header a {
@@ -22,7 +23,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 200px;
+  height: 80px;
+  width: 150px;
 }
 .containerMenu{
 height: 70px;
