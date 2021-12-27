@@ -1,35 +1,10 @@
 
 const fullname = JSON.parse(localStorage.getItem("userInfo")).fullname;
+if (!localStorage.getItem("staffList")) {
+  localStorage.setItem("staffList", JSON.stringify([]));
+}
 
-let staffList = [
-  {
-      id: 1,
-      name: "B",
-      gender: "male",
-      dob: "1990-10-10",
-      phone: "0915055032",
-      email: "B@gmail.com",
-      department: "usa",
-  },
-  {
-      id: 2,
-      name: "A",
-      gender: "male",
-      dob: "1991-11-11",
-      phone: "081236598",
-      email: "A@gmail.com",
-      department: "Sales",
-  },
-  {
-      id: 3,
-      name: "M",
-      gender: "female",
-      dob: "1992-12-12",
-      phone: "012356895",
-      email: "M@gmail.com",
-      department: "Accouting",
-  },
-];
+let staffList = JSON.parse(localStorage.getItem('staffList'));
 let editId = null;
 
 const table = document.querySelector("#table-data");
@@ -61,25 +36,44 @@ closeBtn.addEventListener('click', closeModal);
 cancel.addEventListener('click', closeClick);
 add.addEventListener('click', closeModal);
 
+let stage = {
+  columnName: "",
+  isAsc: true,
+}
+
 sort.addEventListener("click", function() {
-  staffList.reverse();
-  refreshTable();
+  stage.columnName = "id"
+  if (stage.isAsc) {
+      staffList.sort(sortNoAsc);
+      stage.isAsc = false;
+      refreshTable();
+  } else {
+      staffList.reverse(sortNoAsc);
+      stage.isAsc = true;
+      refreshTable();
+  }
 });
 
+function sortNoAsc(firstEl, secondEl) {
+  if (firstEl.id < secondEl.id) {
+      return -1;
+  }
+  if (firstEl.id > secondEl.id) {
+      return 1;
+  }
+  return 0;
+}
+
 sortName.addEventListener("click", function() {
-  let stage = 0;
-  if (stage = 0) {
-      staffList.sort();
-      refreshTable();
-      stage = 1;
-  } else if (stage = 1) {
+  stage.columnName = "name";
+  if (stage.isAsc) {
       staffList.sort(sortNameAsc);
+      stage.isAsc = false;
       refreshTable();
-      stage = 2;
   } else {
-      staffList.sort(sortNameDes);
+      staffList.reverse(sortNameAsc);
+      stage.isAsc = true;
       refreshTable();
-      stage = 0;
   }
 });
 
@@ -93,15 +87,6 @@ function sortNameAsc(firstEl, secondEl) {
   return 0;
 }
 
-function sortNameDes(firstEl, secondEl) {
-  if (firstEl.name < secondEl.name) {
-      return 1;
-  }
-  if (firstEl.name > secondEl.name) {
-      return -1;
-  }
-  return 0;
-}
 
 function search() {
   const searchValue = searchInput.value;
@@ -271,6 +256,7 @@ add.addEventListener("click", function () {
       staffList.push(newStaff);
       addId();
   }
+  localStorage.setItem("staffList", JSON.stringify(staffList));
   closeModal();
   refreshTable();
   clearInput();
@@ -280,6 +266,7 @@ refreshTable();
 console.log(staffList);
 
 function deleteFunction(id) {
+  localStorage.setItem("staffList", JSON.stringify(staffList)); 
   const index = staffList.findIndex((item) => item.id === id);
   staffList.splice(index, 1);
   addId();
@@ -287,6 +274,7 @@ function deleteFunction(id) {
 }
 
 function editFunction(id) {
+  localStorage.setItem("staffList", JSON.stringify(staffList));
   const index = staffList.findIndex((item) => item.id === id);
   const staff = staffList[index];
   nameInput.value = staff.name;
