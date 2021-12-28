@@ -7,34 +7,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Active Staff list</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link rel="stylesheet" href="slidebar.css">
 </head>
 
 <body>
     <div class="header">
+        <div class="containerMenu1">
+            <div class="wrapper">
+                <input type="checkbox" id="btn" hidden>
+                <label for="btn" class="menu-btn">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-times"></i>
+                </label>
+                <nav id="sidebar">
+                   <div class="title">
+                      Side Menu
+                   </div>
+                   <ul class="list-items">
+                      <li><a href="#">Home</a></li>
+                      <li><a href="index.html" >Staff</a></li>
+                      <li><a href="index1.html" >customer</a></li>
+                      <li><a href="#">calendar</a></li>
+                   </ul>
+                </nav>
+             </div>
+        </div>
         <div class="logo"><img src="icon/logo.png" style="width: 100%; ; height: 100%" ></div>
         <div class="containerMenu">
-            <a id="userfullname">Hello:</a>
-            <img src="./icon/logout.png" class="logout"  onclick="logout()"></a>
+            <span id="userfullname">Hello:</span>
+            <a href="login.html" class="log-out" style="float: right;">Log out</a>
     </div>
     </div>
 
     <div class="body">
-        <div class="body-left">
-                <span class="secssion1">Tìm kiếm</span>
-                <input type="text" id="search-bar" onchange="search()" placeholder="Search ...">
-            <select id="search-option">
-                <option value="name">name</option>
-            </select>
-            <span class="secssion1">nhân sự</span>
-            <a onclick="nv()" style="margin-block: 10px;">nhân viên</a>
-            <a onclick="kh()" style="margin-block: 10px;">khách hàng</a>
-        </div>
-    
-        <div class="body-right">
-    <div class="body1">
         <h1>Active Staff List</h1>
+        <div class="body1">
+        <input type="text" id="search-bar" onchange="search()" placeholder="Search ...">
+    <select id="search-option">
+        <option value="name">name</option>
+    </select>
         <button id="modalBtn" class="button">Add+</button>            
     </div>
+
         <div class="containter">
     <div id="my-modal" class="modal">
       <div class="modal-content">
@@ -66,6 +81,7 @@
                 </div>
             </div>
         </div>
+        
             <table>
                 <thead id="table-header">
                     <tr>
