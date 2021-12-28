@@ -293,12 +293,3 @@ function addId() {
   }
 }
 
-function nv() {
-  window.location.href = './index.html';
-}
-function kh() {
-  window.location.href = './index1.html';
-}
-function logout() {
-  window.location.href = "./login.html";
-}
