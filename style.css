@@ -275,7 +275,6 @@ color: white;
 display: flex;
 flex-direction: column;
 width: 75vw;
-border: 1px solid black;   
 }
 #search {
 background-image: url("./icon/search.png ");
