@@ -293,3 +293,22 @@ function addId() {
   }
 }
 
+const menubtn = document.querySelector(".menu-btn")
+const main = document.querySelector(".body")
+const logo = document.querySelector(".logo")
+
+let menu = {
+  flag: true,
+}
+
+menubtn.addEventListener("click", function() {
+  if (menu.flag) {
+      menu.flag = false;
+      main.style.marginLeft = "16%";
+      logo.style.marginLeft = "17%";
+    } else {
+      menu.flag = true;
+      main.style.marginLeft = "5px";
+      logo.style.marginLeft = "5px";
+    }
+});
