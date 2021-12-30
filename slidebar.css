@@ -14,7 +14,7 @@
     position: absolute;
     left: 20px;
     top: 10px;
-    background: gray;
+    background: black;
     border: 1px solid white;
     color: #fff;
     height: 45px;
@@ -31,9 +31,8 @@
     position: absolute;
     left: 20px;
     top: 10px;
-    background: black;
-    border: 1px solid black;
-    color: #fff;
+    background: white;
+    color: black;
     height: 45px;
     width: 45px;
     z-index: 9999;
@@ -78,7 +77,7 @@
   #sidebar .title{
     line-height: 65px;
     text-align: center;
-    background: gray;
+    background: black;
     font-size: 25px;
     font-weight: 600;
     color: #f2f2f2;
@@ -86,7 +85,7 @@
   }
   #sidebar .list-items{
     position: relative;
-    background: gray;
+    background: black;
     width: 100%;
     height: 100%;
     list-style: none;
