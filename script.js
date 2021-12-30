@@ -38,18 +38,18 @@ add.addEventListener('click', closeModal);
 
 let stage = {
   columnName: "",
-  isAsc: true,
+  flag: true,
 }
 
 sort.addEventListener("click", function() {
   stage.columnName = "id"
-  if (stage.isAsc) {
+  if (stage.flag) {
       staffList.sort(sortNoAsc);
-      stage.isAsc = false;
+      stage.flag = false;
       refreshTable();
   } else {
       staffList.reverse(sortNoAsc);
-      stage.isAsc = true;
+      stage.flag = true;
       refreshTable();
   }
 });
@@ -66,13 +66,13 @@ function sortNoAsc(firstEl, secondEl) {
 
 sortName.addEventListener("click", function() {
   stage.columnName = "name";
-  if (stage.isAsc) {
+  if (stage.flag) {
       staffList.sort(sortNameAsc);
-      stage.isAsc = false;
+      stage.flag = false;
       refreshTable();
   } else {
       staffList.reverse(sortNameAsc);
-      stage.isAsc = true;
+      stage.flag = true;
       refreshTable();
   }
 });
@@ -304,8 +304,8 @@ let menu = {
 menubtn.addEventListener("click", function() {
   if (menu.flag) {
       menu.flag = false;
-      main.style.marginLeft = "16%";
-      logo.style.marginLeft = "17%";
+      main.style.marginLeft = "20%";
+      logo.style.marginLeft = "21%";
     } else {
       menu.flag = true;
       main.style.marginLeft = "5px";
