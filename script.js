@@ -266,15 +266,14 @@ refreshTable();
 console.log(staffList);
 
 function deleteFunction(id) {
-  localStorage.setItem("staffList", JSON.stringify(staffList)); 
   const index = staffList.findIndex((item) => item.id === id);
   staffList.splice(index, 1);
+  localStorage.setItem("staffList", JSON.stringify(staffList)); 
   addId();
   refreshTable();
 }
 
 function editFunction(id) {
-  localStorage.setItem("staffList", JSON.stringify(staffList));
   const index = staffList.findIndex((item) => item.id === id);
   const staff = staffList[index];
   nameInput.value = staff.name;
@@ -284,6 +283,7 @@ function editFunction(id) {
   departmentInput.value = staff.department;
   genderInput.value = staff.gender;
   editId = id;
+  localStorage.setItem("staffList", JSON.stringify(staffList));
   refreshTable();
 }
 
