@@ -3,7 +3,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background-color: gray;
+  background-color: black;
   color:  white;
 }
 
@@ -25,8 +25,8 @@
 }
 
 .containerMenu a:hover {
-  background-color: black;
-  color: white;
+  background-color: white;
+  color: black;
 }
 
 .containerMenu1{
