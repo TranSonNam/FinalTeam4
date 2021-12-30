@@ -264,15 +264,14 @@ let customerList = JSON.parse(localStorage.getItem('customerList'));
   console.log(customerList);
   
   function deleteFunction(id) {
-    localStorage.setItem("customerList", JSON.stringify(customerList));
     const index = customerList.findIndex((item) => item.id === id);
     customerList.splice(index, 1);
+    localStorage.setItem("customerList", JSON.stringify(customerList));
     addId();
     refreshTable();
   }
   
   function editFunction(id) {
-    localStorage.setItem("customerList", JSON.stringify(customerList));
     const index = customerList.findIndex((item) => item.id === id);
     const customer = customerList[index];
     nameInput.value = customer.name;
@@ -282,6 +281,7 @@ let customerList = JSON.parse(localStorage.getItem('customerList'));
     departmentInput.value = customer.department;
     edInput.value = customer.ed;
     editId = id;
+    localStorage.setItem("customerList", JSON.stringify(customerList));
     refreshTable();
   }
   
