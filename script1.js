@@ -37,18 +37,18 @@ let customerList = JSON.parse(localStorage.getItem('customerList'));
   
   let stage = {
     columnName: "",
-    isAsc: true,
+    flag: true,
   }
   
   sort.addEventListener("click", function() {
     stage.columnName = "id"
-    if (stage.isAsc) {
+    if (stage.flag) {
       customerList.sort(sortNoAsc);
-        stage.isAsc = false;
+        stage.flag = false;
         refreshTable();
     } else {
       customerList.reverse(sortNoAsc);
-        stage.isAsc = true;
+        stage.flag = true;
         refreshTable();
     }
   });
@@ -65,13 +65,13 @@ let customerList = JSON.parse(localStorage.getItem('customerList'));
   
   sortName.addEventListener("click", function() {
     stage.columnName = "name";
-    if (stage.isAsc) {
+    if (stage.flag) {
       customerList.sort(sortNameAsc);
-        stage.isAsc = false;
+        stage.flag = false;
         refreshTable();
     } else {
       customerList.reverse(sortNameAsc);
-        stage.isAsc = true;
+        stage.flag = true;
         refreshTable();
     }
   });
@@ -302,8 +302,8 @@ let menu = {
 menubtn.addEventListener("click", function() {
   if (menu.flag) {
       menu.flag = false;
-      main.style.marginLeft = "16%";
-      logo.style.marginLeft = "17%";
+      main.style.marginLeft = "20%";
+      logo.style.marginLeft = "21%";
     } else {
       menu.flag = true;
       main.style.marginLeft = "5px";
