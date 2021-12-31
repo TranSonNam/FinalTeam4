@@ -93,7 +93,7 @@ function search() {
   const searchValue = searchInput.value;
   const option = document.querySelector("#search-option").value;
   const searchArr = calendarList.filter(function(item) {
-      return item[`${option}`].includes(searchValue);
+      return item[`name`].includes(searchValue);
   });
   console.log(searchArr);
   table.innerHTML = "";
