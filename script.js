@@ -304,8 +304,8 @@ let menu = {
 menubtn.addEventListener("click", function() {
   if (menu.flag) {
       menu.flag = false;
-      main.style.marginLeft = "21%";
-      logo.style.marginLeft = "21%";
+      main.style.marginLeft = "18%";
+      logo.style.marginLeft = "18%";
     } else {
       menu.flag = true;
       main.style.marginLeft = "5px";
