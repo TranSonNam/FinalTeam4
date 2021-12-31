@@ -14,7 +14,7 @@ form.addEventListener("submit", (e) => {
   );
   localStorage.setItem("userInfo", JSON.stringify(listUser[check]));
   if (check >= 0) {
-    window.location.href = "./index.html";
+    window.location.href = "./staff.html";
   } else {
     alert("Sai tên đăng nhập hoặc mật khẩu");
   }
