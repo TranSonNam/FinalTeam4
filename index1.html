@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Active customer list</title>
+    <title>Danh Sách Khách Hàng</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <link rel="stylesheet" href="slidebar.css">
@@ -27,59 +27,66 @@
                    </div>
                    <ul class="list-items">
                     <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
-                    <li><a href="index.html" ><i class="fas fa-address-book"></i>Staff</a></li>
-                    <li><a href="index1.html" ><i class="fas fa-user"></i>customer</a></li>
-                    <li><a href="index2.html"><i class="far fa-calendar-alt"></i>Class</a></li>
-                    <li><a href="#"><i class="fas fa-comment-dots"></i>message</a></li>
-                    <li><a href="#"><i class="fas fa-bell"></i>notice</a></li>
-                 </ul>
+                    <li><a href="index.html" ><i class="fas fa-address-book"></i>Nhân viên</a></li>
+                    <li><a href="index1.html" ><i class="fas fa-user"></i>Khách Hàng</a></li>
+                    <li><a href="index2.html"><i class="far fa-calendar-alt"></i>Lớp Học</a></li>
+                    <li><a href="#"><i class="fas fa-comment-dots"></i>Tin Nhắn</a></li>
+                    <li><a href="#"><i class="fas fa-bell"></i>Thông Báo</a></li>
+               </ul>
                 </nav>
              </div>
         </div>
         <div class="logo"><img src="icon/logo.png" style="width: 100%; ; height: 100%" ></div>
         <div class="containerMenu">
-            <span id="userfullname">Hello:</span>
-            <a href="./login.html" class="log-out" style="float: right;">Log out</a>
+            <div class="dropdown">
+                <span id="userfullname">Hello: </span>
+              <div class="dropdown-content">
+                <a href="./login.html" class="log-out">Log out</a>
+            </div>
+            </div>
     </div>
     </div>
 
     <div class="body" >
-        <h1> customer List</h1>
-    <div class="body1">
+        <div class="body1">
+            <h1>Danh Sách Khách Hàng</h1>
+            <button id="modalBtn" class="button">Thêm+</button>            
+        </div>
+        <div class="body2">
         <input type="text" id="search-bar" onchange="search()" placeholder="Search ...">
         <select id="search-option">
-            <option value="name">name</option>
-        </select>        
-        <button id="modalBtn" class="button">Add+</button>            
-    </div>
+            <option value="name">Tên</option>
+        </select>
+        </div>
+
         <div class="containter">
     <div id="my-modal" class="modal">
       <div class="modal-content">
         <div class="modal-header">
           <span class="close">&times;</span>
-                        <h2>Add new customer</h2>
+                        <h2>Thêm khách Hàng mới</h2>
                     </div>
                     
                     <div class="modal-body">
                         <div class="form">
-                            <label for="name">Name</label>
+                            <label for="name">Tên</label>
                             <input type="text" placeholder="Họ tên" id="name">
-                            <label for="phone">Phone</label>
+                            <label for="phone">SĐT</label>
                             <input type="text" placeholder="SĐT" id="phone">
                             <label for="email">Email</label>
                             <input type="email" placeholder="Email" id="email">
-                            <label for="department">Department</label>
+                            <label for="department">Địa Chỉ</label>
                             <input type="text" placeholder="Địa chỉ" id="department">
-                            <label for="sd">Start day</label>
+                            <label for="sd">Ngày băt đầu</label>
                             <input type="date" placeholder="Ngày bắt đầu" id="sd">
-                            <label for="ed">End day</label>
+                            <label for="ed">Ngày kết thúc</label>
                             <input type="date" placeholder="Ngày kết thúc" id="ed">
 
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button id="add" type="submit">OK</button>
-                        <button id="cancel">Cancel</button>
+                        <button id="add" type="submit">Thêm</button>
+                        <button id="cancel">Hủy</button>
                     </div>
                 </div>
             </div>
@@ -89,12 +96,12 @@
                     <tr>
                         <th class="sorting">Stt</th>
                         <th class="sorting-name">Họ tên</th>
-                        <th >SĐT</th>
-                        <th >Email</th>
-                        <th >Department</th>
-                        <th >Start day</th>
-                        <th >End day</th>
-                        <th>Edit</th>
+                        <th>SĐT</th>
+                        <th>Email</th>
+                        <th>Địa Chỉ</th>
+                        <th>Ngày bắt đầu</th>
+                        <th>Ngày kết thúc</th>
+                        <th>Chức năng</th>
                     </tr>
                 </thead>
                 <tbody id="table-data">
