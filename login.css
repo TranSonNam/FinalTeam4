@@ -64,10 +64,12 @@ body {
     border-radius: 8px;
 }
 .body input:focus {
-   background: chocolate;
+   background: rgb(184, 181, 181);
 }
+
 .body input[type='submit'],input[type='button'] {
-    background: chartreuse;
+    background: blue;
+    color: white;
     border: none;
     border-radius: 10px;
     margin-top: 10px;
